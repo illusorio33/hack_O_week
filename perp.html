@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Arjun Shukla | Portfolio</title>
+
+  <style>
+    /* BASIC RESET */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      /* dark blue background + green accents */
+      --bg-main: #020617;
+      --bg-card: #020817;
+      --accent: #22c55e;
+      --accent-2: #4ade80;
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --border-soft: rgba(34,197,94,0.35);
+    }
+
+    /* FONT + BASE SIZE */
+    body {
+      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
+        Consolas, "Liberation Mono", "Courier New", monospace;
+      line-height: 1.7;
+      background: radial-gradient(circle at top, #0b1120, #020617);
+      color: var(--text-main);
+      min-height: 100vh;
+      font-size: 16px;
+    }
+
+    a {
+      color: var(--accent-2);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .page {
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 0 16px 40px;
+    }
+
+    /* HEADER / NAV */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(16px);
+      background: linear-gradient(
+        to bottom,
+        rgba(15,23,42,0.9),
+        rgba(15,23,42,0.7),
+        transparent
+      );
+      border-bottom: 1px solid var(--border-soft);
+      margin-bottom: 18px;
+    }
+
+    .nav-bar {
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 10px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo {
+      font-weight: 600;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo-badge {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #22c55e, #4ade80, #0b1120);
+      box-shadow: 0 0 16px rgba(34,197,94,0.8);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 16px;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    nav li a {
+      padding-bottom: 3px;
+      border-bottom: 2px solid transparent;
+    }
+
+    nav li a:hover {
+      border-bottom-color: var(--accent);
+      color: var(--text-main);
+    }
+
+    /* SECTIONS */
+    section {
+      margin-bottom: 26px;
+      background: radial-gradient(circle at top left, rgba(34,197,94,0.12), rgba(15,23,42,0.98));
+      border-radius: 10px;
+      border: 1px solid var(--border-soft);
+      padding: 18px 18px 18px;
+    }
+
+    section h2 {
+      font-size: 19px;
+      margin-bottom: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    section h2::before {
+      content: "";
+      width: 16px;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(to right, var(--accent), var(--accent-2));
+    }
+
+    section p {
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+
+    .section-subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    /* HERO */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 18px;
+      align-items: center;
+      background: linear-gradient(
+        135deg,
+        rgba(34,197,94,0.15),
+        rgba(15,23,42,0.97)
+      );
+    }
+
+    .hero-main h1 {
+      font-size: 28px;
+      margin-bottom: 6px;
+    }
+
+    .hero-main h1 span {
+      background: linear-gradient(to right, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-main .subtitle {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .hero-main .meta {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .pill {
+      font-size: 12px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      background-color: rgba(15,23,42,0.95);
+      color: var(--text-muted);
+      transition: all 0.2s ease;
+    }
+
+    .pill:hover {
+      border-color: var(--accent);
+      color: var(--accent-2);
+      background-color: #020617;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn {
+      font-size: 14px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.18s ease,
+        box-shadow 0.18s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #020617;
+      box-shadow: 0 8px 24px rgba(15,23,42,0.9);
+    }
+
+    .btn-primary:hover {
+      background: #020617;
+      color: var(--accent-2);
+      border-color: var(--accent);
+      transform: translateY(-1px);
+      box-shadow: 0 14px 30px rgba(15,23,42,0.95);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      border-color: var(--border-soft);
+      color: var(--text-muted);
+    }
+
+    .btn-outline:hover {
+      background-color: #020617;
+      border-color: var(--accent);
+      color: var(--accent-2);
+      transform: translateY(-1px);
+      box-shadow: 0 10px 26px rgba(15,23,42,0.9);
+    }
+
+    .hero-side {
+      text-align: center;
+    }
+
+    .hero-card {
+      display: inline-block;
+      padding: 14px 14px 12px;
+      background: radial-gradient(circle at top, #020617, #020617);
+      border-radius: 12px;
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 20px 40px rgba(15,23,42,0.9);
+      min-width: 210px;
+      transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        border-color 0.22s ease,
+        background 0.22s ease;
+    }
+
+    .hero-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+      box-shadow: 0 26px 60px rgba(15,23,42,0.95);
+    }
+
+    .hero-photo {
+      width: 80px;
+      height: 80px;
+      border-radius: 999px;
+      margin: 0 auto 8px;
+      background: radial-gradient(circle at 30% 20%, var(--accent), var(--accent-2), #020617);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      color: #e5e7eb;
+      border: 2px solid rgba(134,239,172,0.7);
+    }
+
+    .hero-name {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .hero-role {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      justify-content: center;
+    }
+
+    .hero-tag {
+      font-size: 12px;
+      padding: 2px 7px;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      color: var(--text-muted);
+      background-color: #020617;
+    }
+
+    /* ABOUT */
+    .info-list {
+      list-style: none;
+      font-size: 14px;
+      margin-top: 6px;
+    }
+
+    .info-list li {
+      margin-bottom: 4px;
+      color: var(--text-muted);
+    }
+
+    .info-list strong {
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .skill-card {
+      background-color: var(--bg-card);
+      border-radius: 8px;
+      border: 1px solid var(--border-soft);
+      padding: 10px 10px 8px;
+      font-size: 13px;
+      transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      background: #020617;
+      box-shadow: 0 16px 30px rgba(15,23,42,0.9);
+    }
+
+    .skill-title {
+      font-size: 14px;
+      color: var(--accent-2);
+      margin-bottom: 4px;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .skill-tag {
+      padding: 2px 6px;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      color: var(--text-muted);
+      font-size: 12px;
+      transition: all 0.2s ease;
+    }
+
+    .skill-tag:hover {
+      border-color: var(--accent);
+      color: var(--accent-2);
+      background-color: #020617;
+    }
+
+    /* PROJECTS */
+    .project-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .project-card {
+      background-color: var(--bg-card);
+      border-radius: 8px;
+      border: 1px solid var(--border-soft);
+      padding: 10px;
+      font-size: 13px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      transition:
+        transform 0.22s ease,
+        border-color 0.22s ease,
+        box-shadow 0.22s ease,
+        background 0.22s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+      background: #020617;
+      box-shadow: 0 20px 45px rgba(15,23,42,0.95);
+    }
+
+    .project-title {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .project-meta {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .project-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .project-links {
+      margin-top: 4px;
+      font-size: 13px;
+    }
+
+    /* CONTACT */
+    .contact-row {
+      font-size: 14px;
+      margin-bottom: 6px;
+      color: var(--text-muted);
+    }
+
+    .contact-row strong {
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-muted);
+      padding: 10px 0 4px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 780px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-side {
+        order: -1;
+      }
+
+      .skills-grid,
+      .project-list {
+        grid-template-columns: repeat(2, minmax(0,1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      nav ul {
+        gap: 10px;
+        font-size: 13px;
+      }
+
+      section {
+        padding: 16px 14px;
+      }
+
+      .skills-grid,
+      .project-list {
+        grid-template-columns: minmax(0,1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav-bar">
+      <div class="logo">
+        <div class="logo-badge"></div>
+        <span>Arjun Shukla</span>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-main">
+        <h1>Hey, I'm <span>Arjun Shukla</span></h1>
+        <p class="subtitle">
+          1st year CS engineering student from Nagpur, experimenting with AI projects, Arduino, and the web.
+        </p>
+        <p class="meta">
+          B.Tech CSE · 1st Year · Building AI “AARYA”.
+        </p>
+
+        <div class="pill-row">
+          <span class="pill">AI projects</span>
+          <span class="pill">AARYA</span>
+          <span class="pill">Arduino</span>
+          <span class="pill">Python & C++</span>
+        </div>
+
+        <div class="btn-row">
+          <a href="#projects" class="btn btn-primary">
+            View projects
+          </a>
+          <a href="#contact" class="btn btn-outline">
+            Get in touch
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-side">
+        <div class="hero-card">
+          <div class="hero-photo">A</div>
+          <div class="hero-name">Arjun Shukla</div>
+          <div class="hero-role">1st Year · CSE</div>
+          <div class="hero-tags">
+            <span class="hero-tag">Nagpur</span>
+            <span class="hero-tag">AI & Dev</span>
+            <span class="hero-tag">Arduino</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <h2>About</h2>
+      <p class="section-subtitle">A quick intro about who you are.</p>
+      <p>
+        I am Arjun Shukla, a first‑year computer science engineering student who loves exploring AI, embedded systems, and web technologies.
+        Right now my main focus is on building my own AI called “AARYA” and learning how to connect hardware and software cleanly.
+      </p>
+      <p>
+        I enjoy breaking problems into smaller parts, experimenting with code, and turning ideas into working prototypes.
+      </p>
+
+      <ul class="info-list">
+        <li><strong>Location:</strong> Nagpur, Maharashtra</li>
+        <li><strong>Degree:</strong> B.Tech in Computer Science Engineering · 1st Year</li>
+        <li><strong>Currently:</strong> Building AI “AARYA” and learning Arduino + web dev</li>
+      </ul>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <h2>Skills</h2>
+      <p class="section-subtitle">Some of the tools and technologies I use.</p>
+
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-title">Languages</div>
+          <div class="skill-tags">
+            <span class="skill-tag">C</span>
+            <span class="skill-tag">C++</span>
+            <span class="skill-tag">Python</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-title">Web</div>
+          <div class="skill-tags">
+            <span class="skill-tag">HTML5</span>
+            <span class="skill-tag">CSS3</span>
+            <span class="skill-tag">Responsive layouts</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-title">AI & Data</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Python for data</span>
+            <span class="skill-tag">ML basics</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-title">Web Scraping</div>
+          <div class="skill-tags">
+            <span class="skill-tag">HTTP requests</span>
+            <span class="skill-tag">HTML parsing</span>
+            <span class="skill-tag">APIs basics</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-title">Tools</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Git & GitHub</span>
+            <span class="skill-tag">VS Code</span>
+            <span class="skill-tag">Linux basics</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-title">Soft Skills</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Problem solving</span>
+            <span class="skill-tag">Teamwork</span>
+            <span class="skill-tag">Continuous learning</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <h2>Projects</h2>
+      <p class="section-subtitle">AI‑focused projects I’m working on.</p>
+
+      <div class="project-list">
+        <div class="project-card">
+          <div class="project-title">AI “AARYA”</div>
+          <div class="project-meta">Python · ML · In progress</div>
+          <p class="project-desc">
+            Personal AI project “AARYA” where I experiment with model building, data handling, and integrating AI features into simple tools and interfaces.
+          </p>
+          <div class="project-links">
+            <a href="https://github.com/illusorio33" target="_blank">GitHub profile ↗</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-title">AI‑Based Learning Device (Arduino)</div>
+          <div class="project-meta">Arduino · Sensors · Embedded</div>
+          <p class="project-desc">
+            Concept for a learning device using Arduino that senses input and uses basic AI logic to guide users and give feedback while they learn.
+          </p>
+          <div class="project-links">
+            <a href="https://github.com/illusorio33" target="_blank">More on GitHub ↗</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-title">Portfolio Website</div>
+          <div class="project-meta">HTML · CSS · Dark green theme</div>
+          <p class="project-desc">
+            This responsive, dark‑themed portfolio built only with HTML and CSS to present my AI and dev journey.
+          </p>
+          <div class="project-links">
+            <span>Current site</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <h2>Contact</h2>
+      <p class="section-subtitle">Let’s connect or build something together.</p>
+
+      <p>
+        If you want to talk about AI, AARYA, Arduino experiments, or internships, feel free to reach out.
+      </p>
+
+      <div class="contact-row">
+        <strong>Email:</strong>
+        <a href="mailto:shuklarudra33@gmail.com">shuklarudra33@gmail.com</a>
+      </div>
+
+      <div class="contact-row">
+        <strong>GitHub:</strong>
+        <a href="https://github.com/illusorio33" target="_blank">github.com/illusorio33</a>
+      </div>
+
+      <div class="contact-row">
+        <strong>LinkedIn:</strong>
+        <a href="https://www.linkedin.com/in/arjun-shukla-712372329" target="_blank">
+          www.linkedin.com/in/arjun-shukla-712372329
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © Arjun Shukla · Built with pure HTML & CSS
+  </footer>
+
+</body>
+</html>
